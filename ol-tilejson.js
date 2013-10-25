@@ -1,6 +1,5 @@
-'use strict';
-
-!function() {
+(function() {
+    'use strict';
     var semver = (function() {
         var pattern = '\\s*[v=]*\\s*([0-9]+)' +   // major
             '\\.([0-9]+)' +                 // minor
@@ -193,4 +192,4 @@
             return map;
         }
     });
-}();
+})();
