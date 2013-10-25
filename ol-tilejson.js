@@ -46,7 +46,7 @@ var handlers = {
     },
     transform: function(context, t) {
         context.tileLayer.transformation =
-            new OpenLayers.Geometry.Transformation(t[0], t[1], t[2], t[3]);
+            new OpenLayers.Layer.TileJSON.Transformation(t[0], t[1], t[2], t[3]);
     },
     crs: function(context, crs) {
         context.crs.code = crs;
@@ -128,24 +128,7 @@ function createTileLayer(context) {
             context.tileLayer);
 }
 
-OpenLayers.Geometry.Transformation = OpenLayers.Class({
-    initialize: function(a, b, c, d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-    },
-
-    transform: function(p) {
-        return [
-            this.a * p[0] + this.b,
-            this.c * p[1] + this.d
-        ];
-    }
-});
-
 OpenLayers.Layer.TileJSON = OpenLayers.Class(OpenLayers.Layer.XYZ, {
-    transformation: new OpenLayers.Geometry.Transformation(1, 0, -1, 0),
 
     getXYZ: function(bounds) {
         var res = this.getServerResolution();
@@ -162,6 +145,24 @@ OpenLayers.Layer.TileJSON = OpenLayers.Class(OpenLayers.Layer.XYZ, {
         return {'x': x, 'y': y, 'z': z};
     },
 });
+
+OpenLayers.Layer.TileJSON.Transformation = OpenLayers.Class({
+    initialize: function(a, b, c, d) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+    },
+
+    transform: function(p) {
+        return [
+            this.a * p[0] + this.b,
+            this.c * p[1] + this.d
+        ];
+    }
+});
+
+OpenLayers.Layer.TileJSON.prototype.transformation = new OpenLayers.Layer.TileJSON.Transformation(1, 0, -1, 0);
 
 // Add static methods
 OpenLayers.Util.applyDefaults(OpenLayers.Layer.TileJSON, {
