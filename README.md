@@ -21,9 +21,9 @@ var osmTileJSON = {
     "attribution": "&copy; OpenStreetMap contributors, CC-BY-SA",
     "scheme": "xyz",
     "tiles": [
-        "http://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
-        "http://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
-        "http://c.tile.openstreetmap.org/${z}/${x}/${y}.png"
+        "http://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "http://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "http://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
     ],
     "minzoom": 0,
     "maxzoom": 18,
