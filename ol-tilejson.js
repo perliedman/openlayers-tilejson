@@ -134,6 +134,21 @@
     // Backport some classes and methods for OpenLayers version < 2.8.
     // Got to love software using reeeeeaaaally old versions.
     if (typeof(OpenLayers.Util.isArray) === 'undefined') {
+        /**
+         * Function: isArray
+         * Tests that the provided object is an array.
+         * This test handles the cross-IFRAME case not caught
+         * by "a instanceof Array" and should be used instead.
+         *
+         * Parameters:
+         * a - {Object} the object test.
+         *
+         * Returns:
+         * {Boolean} true if the object is an array.
+         */
+        OpenLayers.Util.isArray = function(a) {
+            return (Object.prototype.toString.call(a) === '[object Array]');
+        };
     }
 
     if (typeof(OpenLayers.Layer.XYZ) === 'undefined') {
